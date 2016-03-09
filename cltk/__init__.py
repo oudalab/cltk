@@ -6,7 +6,7 @@ more information and documentation: http://cltk.org
 import sys
 from pkg_resources import get_distribution
 
-if sys.version_info[0] != 3:
+if sys.version_info[0] >= 2 :
     raise ImportError('Python Version 3 or above is required for cltk.')
 
 __author__ = 'Kyle P. Johnson et al.'
