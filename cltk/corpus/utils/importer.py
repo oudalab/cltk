@@ -20,7 +20,11 @@ import errno
 from git import Repo
 import os
 import shutil
-from urllib.parse import urljoin
+
+if (sys.version_info > (3, 0)):
+    from urllib.parse import urljoin
+else:
+    from urlparse import urljoin
 
 
 AVAILABLE_LANGUAGES = ['chinese', 'coptic', 'greek', 'latin', 'multilingual', 'pali', 'tibetan','sanskrit']
