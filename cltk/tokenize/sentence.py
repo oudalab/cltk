@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Tokenize sentences."""
 
 __author__ = 'Kyle P. Johnson <kyle@kyle-p-johnson.com>'
