@@ -7,7 +7,7 @@ from cltk.utils.cltk_logger import logger
 import pickle
 
 
-def open_pickle(path: str):
+def open_pickle(path):
     """Open a pickle and return loaded pickle object.
     :type path: str
     :param : path: File path to pickle file to be opened.

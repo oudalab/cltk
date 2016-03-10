@@ -28,12 +28,12 @@ TAGGERS = {'greek':
 class POSTag():
     """Tag words' parts-of-speech."""
 
-    def __init__(self, language: str):
+    def __init__(self, language):
         """Setup variables."""
         self.language = language
         self.available_taggers = self._setup_language_variables(self.language)
 
-    def _setup_language_variables(self, lang: str):
+    def _setup_language_variables(self, lang):
         """Check for language availability and presence of tagger files.
         :param lang: The language argument given to the class.
         :type lang: str
@@ -53,7 +53,7 @@ class POSTag():
             tagger_paths[tagger_key] = tagger_path
         return tagger_paths
 
-    def tag_unigram(self, untagged_string: str):
+    def tag_unigram(self, untagged_string):
         """Tag POS with unigram tagger.
         :type untagged_string: str
         :param : An untagged, untokenized string of text.
@@ -65,7 +65,7 @@ class POSTag():
         tagged_text = tagger.tag(untagged_tokens)
         return tagged_text
 
-    def tag_bigram(self, untagged_string: str):
+    def tag_bigram(self, untagged_string):
         """Tag POS with bigram tagger.
         :type untagged_string: str
         :param : An untagged, untokenized string of text.
@@ -77,7 +77,7 @@ class POSTag():
         tagged_text = tagger.tag(untagged_tokens)
         return tagged_text
 
-    def tag_trigram(self, untagged_string: str):
+    def tag_trigram(self, untagged_string):
         """Tag POS with trigram tagger.
         :type untagged_string: str
         :param : An untagged, untokenized string of text.
@@ -89,7 +89,7 @@ class POSTag():
         tagged_text = tagger.tag(untagged_tokens)
         return tagged_text
 
-    def tag_ngram_123_backoff(self, untagged_string: str):
+    def tag_ngram_123_backoff(self, untagged_string):
         """Tag POS with 1-, 2-, 3-gram tagger.
         :type untagged_string: str
         :param : An untagged, untokenized string of text.
@@ -101,7 +101,7 @@ class POSTag():
         tagged_text = tagger.tag(untagged_tokens)
         return tagged_text
 
-    def tag_tnt(self, untagged_string: str):
+    def tag_tnt(self, untagged_string):
         """Tag POS with TnT tagger.
         :type untagged_string: str
         :param : An untagged, untokenized string of text.
