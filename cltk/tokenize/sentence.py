@@ -26,7 +26,7 @@ class TokenizeSentence():  # pylint: disable=R0903
     ``TokenizeSentence('greek')``.
     """
 
-    def __init__(self: object, language: str):
+    def __init__(self, language):
         """Lower incoming language name and assemble variables.
         :type language: str
         :param language : Language for sentence tokenization.
@@ -35,7 +35,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         self.internal_punctuation, self.external_punctuation, self.tokenizer_path = \
             self._setup_language_variables(self.language)
 
-    def _setup_language_variables(self, lang: str):
+    def _setup_language_variables(self, lang):
         """Check for language availability and presence of tokenizer file,
         then read punctuation characters for language and build tokenizer file
         path.
@@ -57,7 +57,7 @@ class TokenizeSentence():  # pylint: disable=R0903
             'CLTK linguistics data not found for language {0}'.format(lang)
         return internal_punctuation, external_punctuation, tokenizer_path
 
-    def _setup_tokenizer(self, tokenizer: object):
+    def _setup_tokenizer(self, tokenizer):
         """Add tokenizer and punctuation variables.
         :type tokenizer: object
         :param tokenizer : Unpickled tokenizer object.
@@ -71,7 +71,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         params = tokenizer.get_params()
         return PunktSentenceTokenizer(params)
 
-    def tokenize_sentences(self: object, untokenized_string: str):
+    def tokenize_sentences(self, untokenized_string):
         """Tokenize sentences by reading trained tokenizer and invoking
         ``PunktSentenceTokenizer()``.
         :type untokenized_string: str
