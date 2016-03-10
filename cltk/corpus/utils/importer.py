@@ -20,6 +20,7 @@ import errno
 from git import Repo
 import os
 import shutil
+import sys
 
 if (sys.version_info > (3, 0)):
     from urllib.parse import urljoin
