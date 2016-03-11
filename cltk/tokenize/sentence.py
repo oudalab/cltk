@@ -9,6 +9,15 @@ from cltk.utils.file_operations import open_pickle
 from nltk.tokenize.punkt import PunktLanguageVars
 from nltk.tokenize.punkt import PunktSentenceTokenizer
 import os
+import pickle
+
+try:
+    # For Python 3.0 and later
+    from urllib.request import urlopen
+except ImportError:
+    # Fall back to Python 2's urllib2
+    from urllib2 import urlopen
+
 
 
 PUNCTUATION = {'greek':
@@ -26,14 +35,38 @@ class TokenizeSentence():  # pylint: disable=R0903
     ``TokenizeSentence('greek')``.
     """
 
-    def __init__(self, language):
+    def __init__(self, language, train=False):
         """Lower incoming language name and assemble variables.
         :type language: str
         :param language : Language for sentence tokenization.
         """
         self.language = language.lower()
+        if (train and language == 'latin'):
+            self._train_latin()
         self.internal_punctuation, self.external_punctuation, self.tokenizer_path = \
             self._setup_language_variables(self.language)
+
+
+    def _train_latin(self):
+        """Uses the logic from github.com/cltk/latin_training_set_sentence_cltk/
+        to train the new classifier and save it as a pickle in the appropriate place.
+        """
+        training_url = urlopen('https://raw.githubusercontent.com/cltk/latin_training_set_sentence_cltk/cd5a4fc033bd14d20ed4dc17774dec95f354eeb5/training_sentences.txt')
+        train_data = training_url.read()
+        language_punkt_vars = PunktLanguageVars
+        language_punkt_vars.sent_end_chars = ('.', '?', ':')
+        language_punkt_vars.internal_punctuation = (',', ';')
+        trainer = PunktTrainer(train_data, language_punkt_vars)
+        pickle_file = PUNCTUATION[lang]['file']
+        rel_path = os.path.join('~/cltk_data',
+                                lang,
+                                'model/' + lang + '_models_cltk/tokenizers/sentence')  # pylint: disable=C0301
+        path = os.path.expanduser(rel_path)
+        tokenizer_path = os.path.join(path, pickle_file)
+
+        with open('latin.pickle', 'wb') as open_pickle_file:
+            pickle.dump(trainer, pickle_file)
+
 
     def _setup_language_variables(self, lang):
         """Check for language availability and presence of tokenizer file,
