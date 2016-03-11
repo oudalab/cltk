@@ -23,6 +23,8 @@ from nltk.tokenize.punkt import PunktLanguageVars
 from cltk.tokenize.sentence import TokenizeSentence
 from cltk.utils.cltk_logger import logger
 
+if (sys.version_info <= (3, 0)):
+    str = unicode
 
 __author__ = ['Tyler Kirby <joseph.kirby12@ncf.edu>',
               'Bradley Baker <bradley.baker12@ncf.edu>']
