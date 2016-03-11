@@ -39,25 +39,25 @@ class Scansion:
     def __init__(self):
         """Setup class variables."""
 
-        self.punctuation = map(str, ['#', '$', '%', '^', '&', '*', '(', ')', "'",
-                            '_', '+', '=', '{', '}', '[', ']', '|', ':',
-                            ';', '"', "'", '/', '<', '>', '`', '~'])
+        self.punctuation = [u'#', u'$', u'%', u'^', u'&', u'*', u'(', u')', "'",
+                            u'_', u'+', u'=', u'{', u'}', u'[', u']', u'|', u':',
+                            u';', u'"', "'", u'/', u'<', u'>', u'`', u'~']
 
-        self.numbers = str('1234567890')
+        self.numbers = u'1234567890'
 
-        self.abbreviations = map(str, ['Agr.', 'Ap.', 'A.', 'K.', 'D.', 'F.', 'C.',
-                              'Cn.', 'L.', 'Mam.', 'M\'', 'M.', 'N.', 'Oct.',
-                              'Opet.', 'Post.', 'Pro.', 'P.', 'Q.', 'Sert.',
-                              'Ser.', 'Sex.', 'S.', 'St.', 'Ti.', 'T.', 'V.',
-                              'Vol.', 'Vop.', 'Pl.'])
-        self.vowels = map(str, ['a', 'e', 'i', 'o', 'u'])
-        self.sing_cons = map(str, ['b', 'c', 'd', 'f', 'g', 'j', 'k', 'l', 'm', 'n',
-                          'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'])
-        self.doub_cons = map(str, ['x', 'z'])
-        self.long_vowels = map(str, ['ā', 'ē', 'ī', 'ō', 'ū'])
-        self.diphthongs = map(str, ['ae', 'au', 'eu', 'ei', 'oe', 'uī'])
-        self.stops = map(str, ['t', 'p', 'd', 'k', 'b'])
-        self.liquids = map(str, ['r', 'l'])
+        self.abbreviations = [u'Agr.', u'Ap.', u'A.', u'K.', u'D.', u'F.', u'C.',
+                              u'Cn.', u'L.', u'Mam.', u'M\'', u'M.', u'N.', u'Oct.',
+                              u'Opet.', u'Post.', u'Pro.', u'P.', u'Q.', u'Sert.',
+                              u'Ser.', u'Sex.', u'S.', u'St.', u'Ti.', u'T.', u'V.',
+                              u'Vol.', u'Vop.', u'Pl.']
+        self.vowels = [u'a', u'e', u'i', u'o', u'u']
+        self.sing_cons =  [u'b', u'c', u'd', u'f', u'g', u'j', u'k', u'l', u'm', u'n',
+                          u'p', u'q', u'r', u's', u't', u'v', u'w', u'x', u'z']
+        self.doub_cons = [u'x', u'z']
+        self.long_vowels = [u'ā', u'ē', u'ī', u'ō', u'ū']
+        self.diphthongs = [u'ae', u'au', u'eu', u'ei', u'oe', u'uī']
+        self.stops = [u't', u'p', u'd', u'k', u'b']
+        self.liquids =  [u'r', u'l']
 
     def _tokenize(self, text):
         """
