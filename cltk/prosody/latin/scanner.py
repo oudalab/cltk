@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 This program returns the prosimetric scansion of Latin texts. A user is first
 prompted to supply the file path of the text they wish to scan.
@@ -38,25 +39,25 @@ class Scansion:
     def __init__(self):
         """Setup class variables."""
 
-        self.punctuation = ['#', '$', '%', '^', '&', '*', '(', ')', "'",
+        self.punctuation = map(str, ['#', '$', '%', '^', '&', '*', '(', ')', "'",
                             '_', '+', '=', '{', '}', '[', ']', '|', ':',
-                            ';', '"', "'", '/', '<', '>', '`', '~']
+                            ';', '"', "'", '/', '<', '>', '`', '~'])
 
-        self.numbers = '1234567890'
+        self.numbers = str('1234567890')
 
-        self.abbreviations = ['Agr.', 'Ap.', 'A.', 'K.', 'D.', 'F.', 'C.',
+        self.abbreviations = map(str, ['Agr.', 'Ap.', 'A.', 'K.', 'D.', 'F.', 'C.',
                               'Cn.', 'L.', 'Mam.', 'M\'', 'M.', 'N.', 'Oct.',
                               'Opet.', 'Post.', 'Pro.', 'P.', 'Q.', 'Sert.',
                               'Ser.', 'Sex.', 'S.', 'St.', 'Ti.', 'T.', 'V.',
-                              'Vol.', 'Vop.', 'Pl.']
-        self.vowels = ['a', 'e', 'i', 'o', 'u']
-        self.sing_cons = ['b', 'c', 'd', 'f', 'g', 'j', 'k', 'l', 'm', 'n',
-                          'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z']
-        self.doub_cons = ['x', 'z']
-        self.long_vowels = ['ā', 'ē', 'ī', 'ō', 'ū']
-        self.diphthongs = ['ae', 'au', 'eu', 'ei', 'oe', 'uī']
-        self.stops = ['t', 'p', 'd', 'k', 'b']
-        self.liquids = ['r', 'l']
+                              'Vol.', 'Vop.', 'Pl.'])
+        self.vowels = map(str, ['a', 'e', 'i', 'o', 'u'])
+        self.sing_cons = map(str, ['b', 'c', 'd', 'f', 'g', 'j', 'k', 'l', 'm', 'n',
+                          'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'])
+        self.doub_cons = map(str, ['x', 'z'])
+        self.long_vowels = map(str, ['ā', 'ē', 'ī', 'ō', 'ū'])
+        self.diphthongs = map(str, ['ae', 'au', 'eu', 'ei', 'oe', 'uī'])
+        self.stops = map(str, ['t', 'p', 'd', 'k', 'b'])
+        self.liquids = map(str, ['r', 'l'])
 
     def _tokenize(self, text):
         """
@@ -95,7 +96,7 @@ class Scansion:
         for sentence in sents_syllables:
             for word in sentence:
                 for syllable in word:
-                    if 'qu' in syllable:
+                    if u'qu' in syllable:
                         qu_syll_index = word.index(syllable)
                         next_syll = qu_syll_index + 1
                         fixed_syllable = [''.join(word[qu_syll_index:
@@ -113,7 +114,7 @@ class Scansion:
         :return: True if the ending of the word is elidable, otherwise False
         :rtype : bool
         """
-        if str(word[-1]).endswith('m'):
+        if str(word[-1]).endswith(u'm'):
             return True
         elif str(word[-1][-1]) in self.long_vowels:
             return True
@@ -134,7 +135,7 @@ class Scansion:
         :return: True if the beginning of a word is elidable, otherwise False
         :rtype : bool
         """
-        if str(word[0]).startswith('h'):
+        if str(word[0]).startswith(u'h'):
             return True
         elif str(word[0][0]) in self.long_vowels:
             return True
@@ -194,7 +195,7 @@ class Scansion:
         """
 
         # Find diphthongs
-        vowel_group = ''
+        vowel_group = u''
         for char in syllable:
             if char in self.long_vowels:
                 return True
@@ -251,9 +252,9 @@ class Scansion:
             for syllable in sentence:
                 if self._long_by_position(syllable, sentence) or \
                    self._long_by_nature(syllable):
-                    scanned_sent.append('¯')
+                    scanned_sent.append(u'¯')
                 else:
-                    scanned_sent.append('˘')
+                    scanned_sent.append(u'˘')
             if len(scanned_sent) > 1:
                 del scanned_sent[-1]
                 scanned_sent.append('x')
@@ -310,9 +311,9 @@ class Scansion:
                         word) - 1
                     # Contains all of the consonants after the last vowel in a
                     # word
-                    leftovers = ''
+                    leftovers = u''
                     while word[cur_letter_in] != last_vowel:
-                        if word[cur_letter_in] != '.':
+                        if word[cur_letter_in] != u'.':
                             # Adds consonants to leftovers
                             leftovers = word[cur_letter_in] + leftovers
                         cur_letter_in -= 1
