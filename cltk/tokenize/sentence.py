@@ -54,7 +54,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         path = os.path.expanduser(rel_path)
         tokenizer_path = os.path.join(path, file)
         assert os.path.isfile(tokenizer_path), \
-            'CLTK linguistics data not found for language {0}'.format(lang)
+            'CLTK linguistics data not found for language {0}, {1} is not a file'.format(lang,tokenizer_path)
         return internal_punctuation, external_punctuation, tokenizer_path
 
     def _setup_tokenizer(self, tokenizer):
