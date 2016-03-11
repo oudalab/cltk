@@ -60,8 +60,8 @@ class TokenizeSentence():  # pylint: disable=R0903
         trainer = PunktTrainer(train_data, language_punkt_vars)
         pickle_file = PUNCTUATION[self.language]['file']
         rel_path = os.path.join('~/cltk_data',
-                                lang,
-                                'model/' + lang + '_models_cltk/tokenizers/sentence')  # pylint: disable=C0301
+                                self.language,
+                                'model/' + self.language + '_models_cltk/tokenizers/sentence')  # pylint: disable=C0301
         path = os.path.expanduser(rel_path)
         tokenizer_path = os.path.join(path, pickle_file)
 
