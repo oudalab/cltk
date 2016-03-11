@@ -58,7 +58,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         language_punkt_vars.sent_end_chars = ('.', '?', ':')
         language_punkt_vars.internal_punctuation = (',', ';')
         trainer = PunktTrainer(train_data, language_punkt_vars)
-        pickle_file = PUNCTUATION[lang]['file']
+        pickle_file = PUNCTUATION[self.language]['file']
         rel_path = os.path.join('~/cltk_data',
                                 lang,
                                 'model/' + lang + '_models_cltk/tokenizers/sentence')  # pylint: disable=C0301
