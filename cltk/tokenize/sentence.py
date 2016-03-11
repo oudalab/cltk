@@ -8,6 +8,7 @@ __license__ = 'MIT License. See LICENSE.'
 from cltk.utils.file_operations import open_pickle
 from nltk.tokenize.punkt import PunktLanguageVars
 from nltk.tokenize.punkt import PunktSentenceTokenizer
+from nltk.tokenize.punkt import PunktTrainer
 import os
 import pickle
 
