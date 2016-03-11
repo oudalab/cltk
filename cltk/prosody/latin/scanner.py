@@ -26,8 +26,8 @@ from cltk.utils.cltk_logger import logger
 
 import sys
 
-if (sys.version_info <= (3, 0)):
-    str = unicode
+#if (sys.version_info <= (3, 0)):
+#    str = unicode
 
 __author__ = ['Tyler Kirby <joseph.kirby12@ncf.edu>',
               'Bradley Baker <bradley.baker12@ncf.edu>']
