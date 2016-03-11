@@ -113,8 +113,6 @@ class TokenizeSentence():  # pylint: disable=R0903
         :rtype : list of strings
         """
         # load tokenizer
-        assert isinstance(untokenized_string, str), \
-            'Incoming argument must be a string.'
         tokenizer = open_pickle(self.tokenizer_path)
         tokenizer = self._setup_tokenizer(tokenizer)
 
