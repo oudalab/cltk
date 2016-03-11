@@ -23,6 +23,8 @@ from nltk.tokenize.punkt import PunktLanguageVars
 from cltk.tokenize.sentence import TokenizeSentence
 from cltk.utils.cltk_logger import logger
 
+import sys
+
 if (sys.version_info <= (3, 0)):
     str = unicode
 
