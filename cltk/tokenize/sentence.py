@@ -6,6 +6,7 @@ __license__ = 'MIT License. See LICENSE.'
 
 
 from cltk.utils.file_operations import open_pickle
+import io
 from nltk.tokenize.punkt import PunktLanguageVars
 from nltk.tokenize.punkt import PunktSentenceTokenizer
 from nltk.tokenize.punkt import PunktTrainer
@@ -21,13 +22,13 @@ except ImportError:
 
 
 
-PUNCTUATION = {'greek':
-                   {'external': ('.', ';'),
-                    'internal': (',', '·'),
+PUNCTUATION = {u'greek':
+                   {'external': (u'.', u';'),
+                    'internal': (u',', u'·'),
                     'file': 'greek.pickle', },
-               'latin':
-                   {'external': ('.', '?', ':'),
-                    'internal': (',', ';'),
+               u'latin':
+                   {'external': (u'.', u'?', u':'),
+                    'internal': (u',', u';'),
                     'file': 'latin.pickle', }}
 
 
@@ -42,7 +43,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         :param language : Language for sentence tokenization.
         """
         self.language = language.lower()
-        if (train and language == 'latin'):
+        if (train and language == u'latin'):
             self._train_latin()
         self.internal_punctuation, self.external_punctuation, self.tokenizer_path = \
             self._setup_language_variables(self.language)
@@ -55,8 +56,8 @@ class TokenizeSentence():  # pylint: disable=R0903
         training_url = urlopen('https://raw.githubusercontent.com/cltk/latin_training_set_sentence_cltk/cd5a4fc033bd14d20ed4dc17774dec95f354eeb5/training_sentences.txt')
         train_data = training_url.read()
         language_punkt_vars = PunktLanguageVars
-        language_punkt_vars.sent_end_chars = ('.', '?', ':')
-        language_punkt_vars.internal_punctuation = (',', ';')
+        language_punkt_vars.sent_end_chars = (u'.', u'?', u':')
+        language_punkt_vars.internal_punctuation = (u',', u';')
         trainer = PunktTrainer(train_data, language_punkt_vars)
         pickle_file = PUNCTUATION[self.language]['file']
         rel_path = os.path.join('~/cltk_data',
@@ -65,7 +66,7 @@ class TokenizeSentence():  # pylint: disable=R0903
         path = os.path.expanduser(rel_path)
         tokenizer_path = os.path.join(path, pickle_file)
 
-        with open(tokenizer_path, 'wb') as open_pickle_file:
+        with io.open(tokenizer_path, 'wb', encoding='utf-8') as open_pickle_file:
             pickle.dump(trainer, open_pickle_file)
 
 
