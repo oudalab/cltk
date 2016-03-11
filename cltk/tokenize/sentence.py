@@ -65,8 +65,8 @@ class TokenizeSentence():  # pylint: disable=R0903
         path = os.path.expanduser(rel_path)
         tokenizer_path = os.path.join(path, pickle_file)
 
-        with open('latin.pickle', 'wb') as open_pickle_file:
-            pickle.dump(trainer, pickle_file)
+        with open(tokenizer_path, 'wb') as open_pickle_file:
+            pickle.dump(trainer, open_pickle_file)
 
 
     def _setup_language_variables(self, lang):
